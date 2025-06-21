@@ -1,13 +1,18 @@
 import type { NextConfig } from "next";
 
+// Define your GitHub repo name here
+const repoName = "future-med-website";
+
+// Check if we’re in production (e.g., deployed on GitHub Pages)
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  output: 'export', // Required for static export
+  output: "export",
   images: {
-    unoptimized: true, // Required because GitHub Pages doesn't support image optimization
+    unoptimized: true,
   },
-  basePath: '/future-med-website', // Replace with your repo name
-  trailingSlash: true, // Helps with proper routing on GitHub Pages
+  basePath: isProd ? `/${repoName}` : "",
+  trailingSlash: true,
 };
 
 export default nextConfig;
