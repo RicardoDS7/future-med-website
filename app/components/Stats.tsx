@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, FastForward, Hospital, TrendingDown, TrendingUp, UserSearch } from "lucide-react";
+import { ArrowRight, TrendingDown, TrendingUp, UserSearch } from "lucide-react";
 import Image from "next/image";
 
 export default function Stats() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Funnel, HandHelping, Image, LucideScanSearch, Network, ShieldAlert, Smartphone, Sparkles } from "lucide-react"; // Or any icon
+import { Funnel, HandHelping, Image, LucideScanSearch, ShieldAlert, Smartphone } from "lucide-react"; // Or any icon
 
 const features = [
   {
