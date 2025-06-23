@@ -111,7 +111,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-md">
+        <div className="md:hidden bg-white shadow-md z-50">
           <div className="max-w-screen-xl mx-auto flex flex-col px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link

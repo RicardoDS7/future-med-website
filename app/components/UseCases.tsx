@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Plus } from "lucide-react";
 
 type UseCase = {
   title: string;
@@ -71,7 +72,7 @@ export default function UseCases() {
   const [activeTab, setActiveTab] = useState("gp");
 
   return (
-    <section id="use-cases" className="w-full py-16 px-4 md:px-10 bg-gray-50">
+    <section id="use-cases" className="w-full pt-16 pb-4 px-4 md:px-10 bg-gray-50">
       <div className="max-w-screen-xl mx-auto">
       {/* Desktop Tabs */}
       <div className="text-center max-w-6xl mx-auto mb-10">
@@ -155,34 +156,61 @@ export default function UseCases() {
       </div>
 
       {/* Mobile Accordion */}
-      <div className="md:hidden space-y-4">
+      <div className="md:hidden space-y-4 pb-2">
         {useCases.map((item) => (
-          <details key={item.key} className="bg-white rounded-xl shadow-lg p-4">
-            <summary className="cursor-pointer text-lg font-semibold">
-              {item.title}
+            <details
+            key={item.key}
+            className="group bg-white rounded-3xl shadow-md transition overflow-hidden"
+            >
+            <summary className="flex items-center justify-between px-5 py-4 font-medium text-base text-gray-800 cursor-pointer bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] text-white">
+                <span
+                className={`
+                    inline-block px-4 py-1 rounded-full font-medium text-sm transition
+                `}
+                >
+                {item.title}
+                </span>
+                <Plus size={20} />
             </summary>
-            <div className="mt-4 space-y-3">
-              <div className="w-full h-52 relative rounded-md overflow-hidden">
+
+            <div className="space-y-4">
+                <div className="w-full h-52 relative rounded-br-2xl rounded-bl-2xl overflow-hidden shadow-sm">
                 <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
                 />
-              </div>
-              <p className="text-sm text-gray-600">{item.overview}</p>
-              <ul className="space-y-2 pt-2 text-sm">
+                </div>
+
+                <p className="text-sm text-gray-700 px-4">{item.overview}</p>
+
+                <ul className="space-y-2 text-sm px-4">
                 {item.benefits.map((point, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-[var(--color-primary)] mt-1">✓</span>
+                    <li key={idx} className="flex items-start gap-2">
+                    <span className="text-[var(--color-primary)] mt-1 font-bold">✓</span>
                     <span>{point}</span>
-                  </li>
+                    </li>
                 ))}
-              </ul>
+                </ul>
+
+                <div className="flex items-center justify-between px-4 pb-4">
+                <button
+                className="mx-auto text-center font-bold text-white py-2 px-4 rounded-full mt-2 transition hover:brightness-105"
+                style={{
+                    background:
+                    "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+                }}
+                onClick={() => (window.location.href = "#get-started")}
+                >
+                Schedule a demo
+                </button>
+                </div>
             </div>
-          </details>
+            </details>
         ))}
-      </div>
+        </div>
+
       </div>
     </section>
   );

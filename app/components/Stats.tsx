@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 
 export default function Stats() {
   return (
-    <section className="bg-gray-50 py-20 px-6">
+    <section className="bg-gray-50 py-16 px-6">
 
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
