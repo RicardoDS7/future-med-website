@@ -165,7 +165,7 @@ export default function UseCases() {
             <summary className="flex items-center justify-between px-5 py-4 font-medium text-base text-gray-800 cursor-pointer bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] text-white">
                 <span
                 className={`
-                    inline-block px-4 py-1 rounded-full font-medium text-sm transition
+                    inline-block px-4 py-1 rounded-full font-bold text-sm transition
                 `}
                 >
                 {item.title}
