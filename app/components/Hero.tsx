@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gray-50 py-10 px-6">
+    <section id="hero" className="relative bg-gray-50 py-16 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left Content */}
         <div className="flex-1 text-center md:text-left">

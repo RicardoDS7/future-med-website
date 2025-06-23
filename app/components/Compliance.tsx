@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Compliance() {
   return (
-    <section className="bg-white py-12 px-6 md:px-12">
+    <section className="bg-white py-16 px-6 md:px-12">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           Certified for Global Standards in Healthcare
@@ -12,7 +12,7 @@ export default function Compliance() {
             As the official reseller in South Africa, FutureMed brings this trusted, globally certified solution to local clinics and hospitals with complete confidence.
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-top justify-center">
+        <div className="flex flex-wrap gap-8 items-top justify-center">
           <div className="flex flex-col items-center text-center">
             <Image
               src="/iso-certified.png"

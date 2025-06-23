@@ -43,7 +43,7 @@ const features = [
 
 export default function KeyVisionSection() {
   return (
-    <section className="py-20 px-4 md:px-8 bg-white text-[#0e0c1d] max-w-6xl mx-auto">
+    <section id="features" className="py-16 px-4 md:px-8 bg-white text-[#0e0c1d] max-w-6xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-medium mb-4">
           Here are some key vision

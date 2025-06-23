@@ -1,47 +1,189 @@
-import React from "react";
+"use client";
 
-const useCases = [
-    {
-        title: "Automated Diagnosis",
-        description:
-            "Leverage AI to assist healthcare professionals in diagnosing skin conditions quickly and accurately, reducing human error and improving patient outcomes.",
-    },
-    {
-        title: "Remote Patient Monitoring",
-        description:
-            "Enable continuous monitoring of patients' skin health remotely, allowing for timely interventions and reducing the need for frequent in-person visits.",
-    },
-    {
-        title: "Treatment Progress Tracking",
-        description:
-            "Track the effectiveness of prescribed treatments over time with visual documentation and AI-powered analysis, ensuring optimal care plans.",
-    },
-    {
-        title: "Clinical Decision Support",
-        description:
-            "Provide clinicians with evidence-based recommendations and insights, supporting better decision-making and personalized patient care.",
-    },
+import { useState } from "react";
+import Image from "next/image";
+
+type UseCase = {
+  title: string;
+  key: string;
+  image: string;
+  overview: string;
+  benefits: string[];
+};
+
+const useCases: UseCase[] = [
+  {
+    title: "General Practitioners (GPs)",
+    key: "gp",
+    image: "/gp.jpg",
+    overview:
+      "Legit.Health empowers GPs with clinical-grade AI to diagnose 232+ skin conditions in under 30 seconds — helping manage high patient volumes without specialist support.",
+    benefits: [
+      "Diagnose common skin conditions with >90% accuracy using AI — no specialist needed",
+      "Reduce unnecessary referrals by up to 27%, easing load on dermatologists",
+      "Cut appointment times by up to 50%, freeing up your schedule",
+      "Improve rural access: enable remote follow-ups using image uploads",
+    ],
+  },
+  {
+    title: "Dermatologists",
+    key: "dermatologist",
+    image: "/dermatologist.jpg",
+    overview:
+      "Legit.Health standardizes referrals and follow-ups with AI-backed scoring, freeing dermatologists to focus on complex cases while reducing diagnostic variation.",
+    benefits: [
+      "Receive structured, AI-scored referrals from GPs — no more guesswork",
+      "Use AI to track condition progression and validate treatment efficacy",
+      "Reduce non-critical visits by 27% through better triage",
+      "Improve diagnostic consistency with standardized severity scoring (PASI, EASI, etc.)",
+    ],
+  },
+  {
+    title: "Health Insurers",
+    key: "insurer",
+    image: "/insurer.jpg",
+    overview:
+      "Legit.Health helps insurers cut dermatology claims costs, avoid expensive late-stage treatments, and simplify claims processing. By equipping provider networks with AI diagnostics, insurers gain financial efficiency and actionable data to improve underwriting and retention.",
+    benefits: [
+      "Cut claim costs by up to 20% by eliminating unnecessary referrals and overtreatment",
+      "Enable earlier detection of serious conditions like melanoma to reduce long-term expenses",
+      "Streamline approvals with AI-generated diagnostic reports and reduce admin delays",
+      "Boost customer loyalty by offering faster, more accurate care via your provider network",
+      "Leverage diagnostic data to improve risk modeling, premiums, and underwriting",
+    ],
+  },
+  {
+    title: "Pharmaceutical Companies",
+    key: "pharma",
+    image: "/pharma.jpg",
+    overview:
+      "Pharma companies can integrate Legit.Health to improve trial design, track outcomes in real time, and distribute digital diagnostic tools with product bundles.",
+    benefits: [
+      "Run smarter clinical trials: track treatment impact using AI-powered visual scoring",
+      "Get real-world efficacy data from doctors using your dermatology products",
+      "Bundle Legit.Health with products to boost differentiation and adherence",
+      "Access anonymized insights across 500+ clinics for research & product strategy",
+    ],
+  },
 ];
 
-const UseCases: React.FC = () => (
-    <section className="py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">
-                Legit.Health Use Cases
-            </h2>
-            <div className="grid gap-8 md:grid-cols-2">
-                {useCases.map((useCase, idx) => (
-                    <div
-                        key={idx}
-                        className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition"
-                    >
-                        <h3 className="text-xl font-semibold mb-2">{useCase.title}</h3>
-                        <p className="text-gray-700">{useCase.description}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-);
+export default function UseCases() {
+  const [activeTab, setActiveTab] = useState("gp");
 
-export default UseCases;
+  return (
+    <section id="use-cases" className="w-full py-16 px-4 md:px-10 bg-gray-50">
+      <div className="max-w-screen-xl mx-auto">
+      {/* Desktop Tabs */}
+      <div className="text-center max-w-6xl mx-auto mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                How FutureMed Delivers Value Across the Healthcare Industry
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+                From general practitioners and dermatologists to insurers and pharmaceutical leaders, Legit.Health enhances accuracy, reduces costs, and streamlines care with AI-powered dermatology diagnostics.
+            </p>
+        </div>
+
+      <div className="hidden md:flex flex-wrap gap-3 mb-6 items-center justify-center">
+        {useCases.map((item) => (
+          <div
+            key={item.key}
+            onClick={() => setActiveTab(item.key)}
+            className={`rounded-full p-[2px] cursor-pointer transition 
+              ${activeTab === item.key
+                ? "bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)]"
+                : "bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] hover:shadow-lg"
+              }`}
+          >
+            <button
+              className={`cursor-pointer px-4 py-2 rounded-full font-medium w-full h-full transition
+                ${activeTab === item.key
+                  ? "text-white bg-transparent"
+                  : "bg-white"
+                }`}
+            >
+              {item.title}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Tab Content */}
+      <div className="hidden md:block bg-white rounded-[50px] shadow-lg p-0">
+        {useCases
+          .filter((item) => item.key === activeTab)
+          .map((item) => (
+            <div
+              key={item.key}
+              className="flex flex-col md:flex-row gap-8 items-start md:items-center"
+            >
+              <div className="w-full md:w-1/2 relative min-h-[600px]">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover rounded-[50px]"
+                />
+              </div>
+              <div className="w-full md:w-1/2 space-y-6 max-w-xl">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {item.title.replace("I'm ", "")}
+                </h3>
+                <p className="text-base text-gray-700 leading-relaxed">
+                  {item.overview}
+                </p>
+                <ul className="space-y-3 text-base">
+                  {item.benefits.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[var(--color-primary)] text-xl mt-1">✓</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  className="cursor-pointer relative inline-block font-bold text-white py-2 px-6 rounded-full hover:brightness-105 transition shadow-md mt-4"
+                  onClick={() => (window.location.href = "#get-started")}
+                  style={{
+                    background:
+                      "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+                  }}
+                >
+                  Schedule a demo
+                </button>
+              </div>
+            </div>
+          ))}
+      </div>
+
+      {/* Mobile Accordion */}
+      <div className="md:hidden space-y-4">
+        {useCases.map((item) => (
+          <details key={item.key} className="bg-white rounded-xl shadow-lg p-4">
+            <summary className="cursor-pointer text-lg font-semibold">
+              {item.title}
+            </summary>
+            <div className="mt-4 space-y-3">
+              <div className="w-full h-52 relative rounded-md overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-sm text-gray-600">{item.overview}</p>
+              <ul className="space-y-2 pt-2 text-sm">
+                {item.benefits.map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-[var(--color-primary)] mt-1">✓</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        ))}
+      </div>
+      </div>
+    </section>
+  );
+}

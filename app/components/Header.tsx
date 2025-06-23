@@ -1,11 +1,13 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { Link } from "react-scroll";
 
 const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "How it works", href: "#how-it-works" },
-  { name: "Use Cases", href: "#use-cases" },
+    { name: "Use Cases", href: "use-cases" },
+    { name: "Features", href: "features" },
+    { name: "How it works", href: "how-it-works" },
 ];
 
 export default function Header() {
@@ -17,7 +19,6 @@ export default function Header() {
       setScrolled(window.scrollY > 0);
     };
 
-    // Listen to scroll
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -29,32 +30,55 @@ export default function Header() {
       }`}
     >
       <nav className="w-full max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
-        <div className="text-3xl font-bold flex flex-row items-center space-x-2">
-            <Image src="/futuremed-logo.png" alt="FutureMed Logo" width={50} height={50} className="" />
-            FUTURE 
-            <span className="text-[var(--color-primary)]">
-            MED
-            </span>
-        </div>
+        {/* Logo */}
+        <Link 
+            to="hero"
+            offset={-70}
+            smooth={true}
+            className="cursor-pointer text-3xl font-bold flex flex-row items-center space-x-2">
+          <Image
+            src="/futuremed-logo.png"
+            alt="FutureMed Logo"
+            width={50}
+            height={50}
+            className=""
+          />
+          FUTURE
+          <span className="text-[var(--color-primary)]">MED</span>
+        </Link>
+
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              className="text-gray-700 hover:text-[var(--color-primary)] font-medium transition"
+              to={link.href}
+              offset={-70}
+              smooth={true}
+              duration={500}
+              className="cursor-pointer text-gray-700 hover:text-[var(--color-primary)] font-medium transition"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
-        <button className="cursor-pointer relative inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
-            onClick={() => window.location.href = "#get-started"}
-            style={{
-                    background: `linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)`,
-                    }}>
-            Get Started
-        </button>
 
+        {/* CTA Button */}
+        <Link
+          to="get-started"
+          offset={-70}
+          smooth={true}
+          duration={500}
+          className="hidden cursor-pointer relative md:inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
+          style={{
+            background:
+              "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+          }}
+        >
+          Get Started
+        </Link>
+
+        {/* Mobile Toggle */}
         <button
           className="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-400"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -90,16 +114,33 @@ export default function Header() {
         <div className="md:hidden bg-white shadow-md">
           <div className="max-w-screen-xl mx-auto flex flex-col px-4 pb-4 space-y-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition"
+                to={link.href}
+                offset={-80}
+                smooth={true}
+                duration={500}
                 onClick={() => setMenuOpen(false)}
+                className="cursor-pointer text-gray-700 hover:text-[var(--color-primary)] font-medium transition"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
+            <Link
+                to="get-started"
+                offset={-70}
+                smooth={true}
+                duration={500}
+                className="hidden cursor-pointer relative md:inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
+                style={{
+                    background:
+                    "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+                }}
+                >
+                Get Started
+            </Link>
           </div>
+          
         </div>
       )}
     </header>
