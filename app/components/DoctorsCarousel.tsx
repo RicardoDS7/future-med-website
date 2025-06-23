@@ -7,14 +7,14 @@ import Image from "next/image";
 
 const doctors = [
   {
-    name: "Ramón Grimalt",
-    role: "Dermatologist & Associate Professor",
-    image: "/dr-grimalt.png",
-  },
-  {
     name: "Antonio Martorell",
     role: "Dermatologist and Medical Lead at Legit.Health",
     image: "/dr-antonio-martorell.png",
+  },
+  {
+    name: "Ramón Grimalt",
+    role: "Dermatologist & Associate Professor",
+    image: "/dr-grimalt.png",
   },
   {
     name: "Sergio Vaño",
@@ -41,24 +41,26 @@ const doctors = [
 export default function DoctorsCarousel() {
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: false,
-    mode: "free-snap",
+    mode: "snap", // smoother and more intuitive
     slides: {
-      perView: 1.2,
-      spacing: 16,
+        perView: 1.2,
+        spacing: 16,
     },
+    rubberband: false,
     breakpoints: {
-      "(min-width: 768px)": {
+        "(min-width: 768px)": {
         slides: { perView: 2.5, spacing: 24 },
-      },
-      "(min-width: 1024px)": {
-        slides: { perView: 4.5, spacing: 24 },
-      },
+        },
+        "(min-width: 1024px)": {
+        slides: { perView: 5.5, spacing: 24 },
+        },
     },
   });
 
+
   return (
     <section className="py-16 px-6 bg-gray-50">
-      <h2 className="text-3xl md:text-5xl font-semibold text-center mb-4 text-[var(--foreground)]">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[var(--foreground)]">
         Developed by Doctors, for Doctors
       </h2>
       <p className="text-gray-500 text-center mb-10 max-w-2xl mx-auto">
@@ -73,14 +75,14 @@ export default function DoctorsCarousel() {
               rounded-[30px] pb-6 text-center shadow-md my-2 bg-white"
           >
             <Image
-              width={300}
-              height={300}
+              width={150}
+              height={150}
               src={doc.image}
               alt={doc.name}
               className="object-cover w-full aspect-[9/10] rounded-[20px] mx-auto mb-4"
             />
-            <h3 className="text-xl font-semibold mb-1">{doc.name}</h3>
-            <p className="text-sm text-gray-600">{doc.role}</p>
+            <h3 className="text-LG font-semibold mb-1 px-4">{doc.name}</h3>
+            <p className="text-sm text-gray-600 px-4">{doc.role}</p>
           </div>
         ))}
       </div>

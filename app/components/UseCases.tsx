@@ -17,7 +17,7 @@ const useCases: UseCase[] = [
     key: "gp",
     image: "/gp.jpg",
     overview:
-      "Legit.Health empowers GPs with clinical-grade AI to diagnose 232+ skin conditions in under 30 seconds — helping manage high patient volumes without specialist support.",
+      "Legit.Health empowers GPs with clinical-grade AI to diagnose 300+ skin conditions in under 30 seconds — helping manage high patient volumes without specialist support.",
     benefits: [
       "Diagnose common skin conditions with >90% accuracy using AI — no specialist needed",
       "Reduce unnecessary referrals by up to 27%, easing load on dermatologists",
@@ -134,7 +134,7 @@ export default function UseCases() {
                 <ul className="space-y-3 text-base">
                   {item.benefits.map((point, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[var(--color-primary)] text-xl mt-1">✓</span>
+                      <span className="text-[var(--color-primary)] text-xl mt-1 font-black">✓</span>
                       <span>{point}</span>
                     </li>
                   ))}

@@ -2,44 +2,19 @@
 
 import React, { useState } from "react";
 
-const initialState = {
-  firstName: "",
-  surname: "",
-  email: "",
-  company: "",
-  phone: "",
-  role: "",
-  city: "",
-  message: "",
-};
-
 export default function ScheduleDemoForm() {
-  const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      setForm(initialState);
-    }, 1200);
-  };
 
   return (
     <section
       id="get-started"
-      className="max-w-3xl mx-auto bg-white rounded-[30px] shadow-xl px-6 py-10 md:p-12"
+      className="py-16 md:py-20"
+      style={{
+            background:
+              "linear-gradient(90deg, var(--color-secondary) 10%, var(--color-primary-hover) 50%, var(--color-primary) 80%)",
+          }}
     >
+    <div className="max-w-3xl mx-auto bg-white rounded-[30px] shadow-xl px-6 py-10 md:p-12">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">
         Schedule a Live Demo
       </h2>
@@ -49,10 +24,15 @@ export default function ScheduleDemoForm() {
 
       {submitted ? (
         <div className="text-green-600 font-semibold text-center py-8">
-          ✅ Thank you! We’ll be in touch shortly.
+          ✅ Thank you! We&apos;ll be in touch shortly.
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <form
+          action="https://formspree.io/f/yourFormID" // Replace with your Form ID
+          method="POST"
+          onSubmit={() => setSubmitted(true)}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        >
           {/* First Name */}
           <div className="col-span-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -62,8 +42,6 @@ export default function ScheduleDemoForm() {
               required
               type="text"
               name="firstName"
-              value={form.firstName}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="Jane"
             />
@@ -78,8 +56,6 @@ export default function ScheduleDemoForm() {
               required
               type="text"
               name="surname"
-              value={form.surname}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="Doe"
             />
@@ -94,8 +70,6 @@ export default function ScheduleDemoForm() {
               required
               type="email"
               name="email"
-              value={form.email}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="you@email.com"
             />
@@ -109,8 +83,6 @@ export default function ScheduleDemoForm() {
             <input
               type="tel"
               name="phone"
-              value={form.phone}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="Phone number"
             />
@@ -124,8 +96,6 @@ export default function ScheduleDemoForm() {
             <input
               type="text"
               name="company"
-              value={form.company}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="Company name"
             />
@@ -139,8 +109,6 @@ export default function ScheduleDemoForm() {
             <input
               type="text"
               name="city"
-              value={form.city}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="e.g., Cape Town"
             />
@@ -153,8 +121,6 @@ export default function ScheduleDemoForm() {
             </label>
             <select
               name="role"
-              value={form.role}
-              onChange={handleChange}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
             >
               <option value="">Select one</option>
@@ -173,30 +139,34 @@ export default function ScheduleDemoForm() {
             </label>
             <textarea
               name="message"
-              value={form.message}
-              onChange={handleChange}
               rows={4}
               className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition"
               placeholder="Tell us more about your needs"
             />
           </div>
 
+          {/* reCAPTCHA */}
+          <input type="hidden" name="_captcha" value="true" />
+
+          {/* Redirect after submission (optional) */}
+          {/* <input type="hidden" name="_next" value="https://yourdomain.com/thank-you" /> */}
+
           {/* Submit Button */}
           <div className="col-span-1 lg:col-span-2">
             <button
               type="submit"
-              disabled={loading}
-              className="w-full font-bold text-white py-3 px-6 rounded-full shadow-md hover:brightness-110 transition disabled:opacity-60"
+              className="cursor-pointer w-full font-bold text-white py-3 px-6 rounded-full shadow-md hover:shadow-lg transition"
               style={{
                 background:
                   "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
               }}
             >
-              {loading ? "Sending..." : "Schedule Demo"}
+              Schedule Demo
             </button>
           </div>
         </form>
       )}
+      </div>
     </section>
   );
 }

@@ -14,11 +14,11 @@ export default function LandingPage() {
     <main className="bg-white text-gray-900">
       <Hero />
       <Partners />
-      <Compliance />
       <UseCases />
       <Stats />
       <DoctorsCarousel />
       <Features />
+      <Compliance />
       <ScheduleDemoForm />
       <Footer />
     </main>

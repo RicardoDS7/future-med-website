@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight, TrendingDown, TrendingUp, UserSearch } from "lucide-react";
 import Image from "next/image";
+import { Link } from "react-scroll";
 
 export default function Stats() {
   return (
@@ -13,22 +14,26 @@ export default function Stats() {
         {/* Left Column */}
         <div className="flex flex-col justify-center gap-6">
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)]">
-            Your <span className="bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] bg-clip-text text-transparent">
-              Trusted
-            </span> <br /> Healthcare Providers
+            Empowering Doctors to <span className="bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] bg-clip-text text-transparent">
+              Deliver Faster, Smarter
+            </span> <br /> Care
           </h2>
           <p className="text-gray-500 text-lg">
-            Public does not participate in payment for order flow as a source of revenue. Instead, we route all orders directly.
+            Legit.Health enables accurate diagnosis of 300+ skin conditions, optimizes referrals, and dramatically increases specialist efficiency through AI-powered decision support.
           </p>
-          <button
-              className="cursor-pointer w-fit relative inline-block font-bold text-lg text-white py-3 px-6 rounded-full hover:shadow-lg transition shadow-md"
-              onClick={() => window.location.href = "#get-started"}
-              style={{
-                background: `linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)`,
-              }}
+          <Link
+            to="get-started"
+            offset={-48}
+            smooth={true}
+            duration={500}
+            className="cursor-pointer relative w-fit font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
+            style={{
+                background:
+                "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+            }}
             >
-              Schedule a demo <ArrowRight className="inline ml-2" />
-        </button>
+            Schedule a Free Demo <ArrowRight size={16} className="inline ml-1" />
+          </Link>
         </div>
 
         {/* Right Card */}

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Compliance() {
   return (
-    <section className="bg-white py-16 px-6 md:px-12">
+    <section id="compliance" className="bg-white py-16 px-6 md:px-12">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           Certified for Global Standards in Healthcare
@@ -12,8 +12,8 @@ export default function Compliance() {
             As the official reseller in South Africa, FutureMed brings this trusted, globally certified solution to local clinics and hospitals with complete confidence.
         </p>
 
-        <div className="flex flex-wrap gap-8 items-top justify-center">
-          <div className="flex flex-col items-center text-center">
+        <div className="flex flex-wrap gap-8 items-top justify-evenly">
+          <div className="flex flex-col items-center text-center w-[150px]">
             <Image
               src="/iso-certified.png"
               alt="ISO 13485"
@@ -26,7 +26,7 @@ export default function Compliance() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center w-[150px]">
             <Image
               src="/une-certified.png"
               alt="UNE 62304"
@@ -39,7 +39,7 @@ export default function Compliance() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center w-[150px]">
             <Image
               src="/ce-certified.png"
               alt="CE-Certified Medical Device"
@@ -52,7 +52,7 @@ export default function Compliance() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center w-[150px]">
             <Image
               src="/gdpr-certified.png"
               alt="GDPR"
@@ -65,7 +65,7 @@ export default function Compliance() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center w-[150px]">
             <Image
               src="/hipaa-certified.png"
               alt="HIPAA"

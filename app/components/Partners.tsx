@@ -25,7 +25,7 @@ const Partners: React.FC = () => (
         
         <div className="overflow-hidden w-full py-6">
             <div className="relative w-full">
-                <div className="carousel-track flex items-center gap-24 animate-carousel">
+                <div className="carousel-track flex items-center gap-12 lg:gap-24 animate-carousel">
                     {[...allLogos, ...allLogos].map((item, idx) => (
                         <div
                             key={idx}

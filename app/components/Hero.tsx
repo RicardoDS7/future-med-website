@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Link } from "react-scroll";
 
 export default function HeroSection() {
   return (
@@ -8,7 +9,7 @@ export default function HeroSection() {
         {/* Left Content */}
         <div className="flex-1 text-center md:text-left">
           {/* Heading */}
-          <h1 className="text-4xl md:text-7xl font-medium text-[var(--foreground)] mb-6">
+          <h1 className="text-4xl md:text-7xl font-bold text-[var(--foreground)] mb-6">
             The Best{" "} <br/>
             <span className="bg-gradient-to-r from-[var(--color-primary-hover)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Skin Analytics
@@ -24,15 +25,19 @@ export default function HeroSection() {
 
           {/* CTA Button */}
           <div className="flex justify-center md:justify-start">
-            <button
-              className="cursor-pointer relative inline-block font-bold text-lg text-white py-3 px-6 rounded-full hover:shadow-lg transition shadow-md"
-              onClick={() => window.location.href = "#get-started"}
-              style={{
-                background: `linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)`,
-              }}
+            <Link
+                to="get-started"
+                offset={-70}
+                smooth={true}
+                duration={500}
+                className="hidden cursor-pointer relative md:inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
+                style={{
+                background:
+                    "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
+                }}
             >
-              Book a demo
-            </button>
+                Book a Free Demo
+            </Link>
           </div>
         </div>
 

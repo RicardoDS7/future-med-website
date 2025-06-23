@@ -7,7 +7,7 @@ import { Link } from "react-scroll";
 const navLinks = [
     { name: "Use Cases", href: "use-cases" },
     { name: "Features", href: "features" },
-    { name: "How it works", href: "how-it-works" },
+    { name: "Compliance", href: "compliance" },
 ];
 
 export default function Header() {
@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <header
-      className={`bg-white sticky top-0 z-50 transition-shadow duration-300 ${
+      className={`bg-gray-50 sticky top-0 z-50 transition-shadow duration-300 ${
         scrolled ? "shadow-md" : ""
       }`}
     >
@@ -33,7 +33,7 @@ export default function Header() {
         {/* Logo */}
         <Link 
             to="hero"
-            offset={-70}
+            offset={-100}
             smooth={true}
             className="cursor-pointer text-3xl font-bold flex flex-row items-center space-x-2">
           <Image
@@ -53,7 +53,7 @@ export default function Header() {
             <Link
               key={link.name}
               to={link.href}
-              offset={-70}
+              offset={-24}
               smooth={true}
               duration={500}
               className="cursor-pointer text-gray-700 hover:text-[var(--color-primary)] font-medium transition"
@@ -66,7 +66,7 @@ export default function Header() {
         {/* CTA Button */}
         <Link
           to="get-started"
-          offset={-70}
+          offset={-48}
           smooth={true}
           duration={500}
           className="hidden cursor-pointer relative md:inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
@@ -112,12 +112,12 @@ export default function Header() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white shadow-md">
-          <div className="max-w-screen-xl mx-auto flex flex-col px-4 pb-4 space-y-2">
+          <div className="max-w-screen-xl mx-auto flex flex-col px-4 py-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
-                offset={-80}
+                offset={-200}
                 smooth={true}
                 duration={500}
                 onClick={() => setMenuOpen(false)}
@@ -128,16 +128,16 @@ export default function Header() {
             ))}
             <Link
                 to="get-started"
-                offset={-70}
+                offset={-96}
                 smooth={true}
                 duration={500}
-                className="hidden cursor-pointer relative md:inline-block font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
+                className="cursor-pointer text-center mx-auto mt-4 relative md:hidden font-bold text-white py-2 px-6 rounded-full hover:shadow-lg transition shadow-md"
                 style={{
                     background:
                     "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
                 }}
                 >
-                Get Started
+                Book a Free Demo
             </Link>
           </div>
           
