@@ -19,17 +19,20 @@ export default function ScheduleDemoForm() {
         body: formData,
         headers: { Accept: "application/json" },
       });
-      const json = await res.json();
+
+      const data: { error?: string } = await res.json();
 
       if (res.ok) {
         setSubmitted(true);
       } else {
-        throw new Error(
-          json.error || "There was a problem submitting the form."
-        );
+        throw new Error(data.error || "There was a problem submitting the form.");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
 
@@ -56,12 +59,9 @@ export default function ScheduleDemoForm() {
           </div>
         ) : (
           <>
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-            >
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* First Name */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   First Name <span className="text-red-500">*</span>
                 </label>
@@ -75,7 +75,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Surname */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Surname <span className="text-red-500">*</span>
                 </label>
@@ -89,7 +89,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Email */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -103,7 +103,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Phone */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Phone
                 </label>
@@ -116,7 +116,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Company */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Company
                 </label>
@@ -129,7 +129,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* City */}
-              <div className="col-span-1">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   City
                 </label>
@@ -142,7 +142,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Role Selector */}
-              <div className="col-span-1 lg:col-span-2">
+              <div className="lg:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   What best describes you?
                 </label>
@@ -160,7 +160,7 @@ export default function ScheduleDemoForm() {
               </div>
 
               {/* Message */}
-              <div className="col-span-1 lg:col-span-2">
+              <div className="lg:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Message
                 </label>
@@ -176,10 +176,10 @@ export default function ScheduleDemoForm() {
               <input type="hidden" name="_captcha" value="true" />
 
               {/* Submit Button */}
-              <div className="col-span-1 lg:col-span-2">
+              <div className="lg:col-span-2">
                 <button
                   type="submit"
-                  className="cursor-pointer w-full font-bold text-white py-3 px-6 rounded-full shadow-md hover:shadow-lg transition"
+                  className="w-full font-bold text-white py-3 px-6 rounded-full shadow-md hover:shadow-lg transition"
                   style={{
                     background:
                       "linear-gradient(120deg, var(--color-primary-hover) 30%, var(--color-primary) 70%)",
