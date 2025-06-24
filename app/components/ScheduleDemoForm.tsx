@@ -29,12 +29,16 @@ export default function ScheduleDemoForm() {
         ) : (
           <>
             <form
-              action="https://formspree.io/f/xpwryepb"
-              method="POST"
-              target="hidden_iframe"
-              onSubmit={() => setSubmitted(true)}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            action="https://formspree.io/f/xpwryepb"
+            method="POST"
+            target="hidden_iframe"
+            onSubmit={(e) => {
+                setSubmitted(true);
+                return true;
+            }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
             >
+
               {/* First Name */}
               <div className="col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
