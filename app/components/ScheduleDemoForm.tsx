@@ -4,6 +4,34 @@ import React, { useState } from "react";
 
 export default function ScheduleDemoForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/xpwryepb", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      const json = await res.json();
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        throw new Error(
+          json.error || "There was a problem submitting the form."
+        );
+      }
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
 
   return (
     <section
@@ -29,16 +57,9 @@ export default function ScheduleDemoForm() {
         ) : (
           <>
             <form
-            action="https://formspree.io/f/xpwryepb"
-            method="POST"
-            target="hidden_iframe"
-            onSubmit={(_e) => {
-                setSubmitted(true);
-                return true;
-            }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
             >
-
               {/* First Name */}
               <div className="col-span-1">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -169,8 +190,9 @@ export default function ScheduleDemoForm() {
               </div>
             </form>
 
-            {/* Hidden iframe to prevent page reload */}
-            <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
+            {error && (
+              <p className="mt-4 text-center text-red-600">{error}</p>
+            )}
           </>
         )}
       </div>
