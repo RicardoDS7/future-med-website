@@ -32,7 +32,7 @@ export default function ScheduleDemoForm() {
             action="https://formspree.io/f/xpwryepb"
             method="POST"
             target="hidden_iframe"
-            onSubmit={(e) => {
+            onSubmit={(_e) => {
                 setSubmitted(true);
                 return true;
             }}
